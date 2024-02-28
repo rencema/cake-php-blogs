@@ -1,6 +1,6 @@
 <?php
 
-class PostController extends AppController
+class PostsController extends AppController
 {
   public $helpers = array('Html', 'Form', 'Flash');
   public $components = array('Flash',);
@@ -49,7 +49,7 @@ class PostController extends AppController
       $this->Post->id = $id;
       if ($this->Post->save($this->request->data)) {
         $this->Flash->success(__('Your post has been updated.'));
-        return $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('action' => 'index', 'controller' => 'posts'));
       }
       $this->Flash->error(__('Unable to update your post.'));
     }

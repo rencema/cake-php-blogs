@@ -28,6 +28,8 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 define('WEBROOT_DIR', 'webroot');
 define('WWW_ROOT', ROOT . DS . APP_DIR . DS . WEBROOT_DIR . DS);
+error_reporting(E_ALL ^ E_WARNING);
+date_default_timezone_set('Asia/Manila');
 
 /**
  * This only needs to be changed if the "cake" directory is located
