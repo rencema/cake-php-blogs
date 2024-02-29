@@ -23,7 +23,7 @@ App::uses('CakeHtmlReporter', 'TestSuite/Reporter');
 App::uses('Model', 'Model');
 
 /**
- * Secondary Post stub class.
+ * Secondary Posts stub class.
  */
 class SecondaryPost extends Model {
 
@@ -418,14 +418,14 @@ class CakeTestCaseTest extends CakeTestCase {
 				CAKE . 'Test' . DS . 'test_app' . DS . 'Model' . DS
 			)
 		), App::RESET);
-		$Post = $this->getMockForModel('Post');
+		$Post = $this->getMockForModel('Posts');
 		$this->assertEquals('test', $Post->useDbConfig);
-		$this->assertInstanceOf('Post', $Post);
+		$this->assertInstanceOf('Posts', $Post);
 		$this->assertNull($Post->save(array()));
 		$this->assertNull($Post->find('all'));
 		$this->assertEquals('posts', $Post->useTable);
 
-		$Post = $this->getMockForModel('Post', array('save'));
+		$Post = $this->getMockForModel('Posts', array('save'));
 
 		$this->assertNull($Post->save(array()));
 		$this->assertInternalType('array', $Post->find('all'));

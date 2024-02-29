@@ -9,5 +9,4 @@ class Post extends AppModel {
       'rule' => 'notBlank'
     ),
   );
-  
 }

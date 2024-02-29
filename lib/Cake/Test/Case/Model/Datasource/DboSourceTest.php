@@ -1593,8 +1593,8 @@ class DboSourceTest extends CakeTestCase {
 				'type' => 'LEFT',
 				'alias' => 'PostsTag',
 				'table' => 'posts_tags',
-				'conditions' => array('PostsTag.post_id = Post.id')
-			), 'LEFT JOIN cakephp.posts_tags AS PostsTag ON (PostsTag.post_id = Post.id)'),
+				'conditions' => array('PostsTag.post_id = Posts.id')
+			), 'LEFT JOIN cakephp.posts_tags AS PostsTag ON (PostsTag.post_id = Posts.id)'),
 			array(array(
 				'type' => 'LEFT',
 				'alias' => 'Stock',
@@ -1631,8 +1631,8 @@ class DboSourceTest extends CakeTestCase {
 				'type' => 'LEFT',
 				'alias' => 'PostsTag',
 				'table' => 'posts_tags',
-				'conditions' => array('PostsTag.post_id = Post.id')
-			), 'LEFT JOIN pre_posts_tags AS PostsTag ON (PostsTag.post_id = Post.id)'),
+				'conditions' => array('PostsTag.post_id = Posts.id')
+			), 'LEFT JOIN pre_posts_tags AS PostsTag ON (PostsTag.post_id = Posts.id)'),
 				array(array(
 					'type' => 'LEFT',
 					'alias' => 'Stock',
@@ -1967,7 +1967,7 @@ class DboSourceTest extends CakeTestCase {
  * @return void
  */
 	public function testUseConsistentAfterFind() {
-		$this->loadFixtures('Author', 'Post');
+		$this->loadFixtures('Author', 'Posts');
 
 		$expected = array(
 			'Author' => array(
@@ -1978,12 +1978,12 @@ class DboSourceTest extends CakeTestCase {
 				'updated' => '2007-03-17 01:18:31',
 				'test' => 'working',
 			),
-			'Post' => array(
+			'Posts' => array(
 				array(
 					'id' => '1',
 					'author_id' => '1',
-					'title' => 'First Post',
-					'body' => 'First Post Body',
+					'title' => 'First Posts',
+					'body' => 'First Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:39:23',
 					'updated' => '2007-03-18 10:41:31',
@@ -1991,8 +1991,8 @@ class DboSourceTest extends CakeTestCase {
 				array(
 					'id' => '3',
 					'author_id' => '1',
-					'title' => 'Third Post',
-					'body' => 'Third Post Body',
+					'title' => 'Third Posts',
+					'body' => 'Third Posts Body',
 					'published' => 'Y',
 					'created' => '2007-03-18 10:43:23',
 					'updated' => '2007-03-18 10:45:31',
@@ -2001,11 +2001,11 @@ class DboSourceTest extends CakeTestCase {
 		);
 
 		$Author = new Author();
-		$Post = $this->getMock('Post', array('afterFind'), array(), '', true);
-		$Post->expects($this->at(0))->method('afterFind')->with(array(array('Post' => $expected['Post'][0])), $this->isFalse())->will($this->returnArgument(0));
-		$Post->expects($this->at(1))->method('afterFind')->with(array(array('Post' => $expected['Post'][1])), $this->isFalse())->will($this->returnArgument(0));
+		$Post = $this->getMock('Posts', array('afterFind'), array(), '', true);
+		$Post->expects($this->at(0))->method('afterFind')->with(array(array('Posts' => $expected['Posts'][0])), $this->isFalse())->will($this->returnArgument(0));
+		$Post->expects($this->at(1))->method('afterFind')->with(array(array('Posts' => $expected['Posts'][1])), $this->isFalse())->will($this->returnArgument(0));
 
-		$Author->bindModel(array('hasMany' => array('Post' => array('limit' => 2, 'order' => 'Post.id'))));
+		$Author->bindModel(array('hasMany' => array('Posts' => array('limit' => 2, 'order' => 'Posts.id'))));
 		$Author->Post = $Post;
 
 		$result = $Author->find('first', array('conditions' => array('Author.id' => 1), 'recursive' => 1));
@@ -2013,11 +2013,11 @@ class DboSourceTest extends CakeTestCase {
 
 		// Backward compatiblity
 		$Author = new Author();
-		$Post = $this->getMock('Post', array('afterFind'), array(), '', true);
-		$Post->expects($this->once())->method('afterFind')->with($expected['Post'], $this->isFalse())->will($this->returnArgument(0));
+		$Post = $this->getMock('Posts', array('afterFind'), array(), '', true);
+		$Post->expects($this->once())->method('afterFind')->with($expected['Posts'], $this->isFalse())->will($this->returnArgument(0));
 		$Post->useConsistentAfterFind = false;
 
-		$Author->bindModel(array('hasMany' => array('Post' => array('limit' => 2, 'order' => 'Post.id'))));
+		$Author->bindModel(array('hasMany' => array('Posts' => array('limit' => 2, 'order' => 'Posts.id'))));
 		$Author->Post = $Post;
 
 		$result = $Author->find('first', array('conditions' => array('Author.id' => 1), 'recursive' => 1));

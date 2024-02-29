@@ -34,6 +34,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
   echo $this->fetch('css');
   echo $this->fetch('script');
   ?>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 </head>
 <body>
 <div id="container">
@@ -42,17 +43,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
       <?php echo $this->Flash->render(); ?>
 
       <?php echo $this->fetch('content'); ?>
-    </div>
-    <div id="footer">
-      <?php echo $this->Html->link(
-        $this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-        'https://cakephp.org/',
-        array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-      );
-      ?>
-        <p>
-          <?php echo $cakeVersion; ?>
-        </p>
     </div>
 </div>
 </body>

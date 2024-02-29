@@ -270,7 +270,7 @@ class SecurityComponent extends Component {
  */
 	public function requirePost() {
 		$args = func_get_args();
-		$this->_requireMethod('Post', $args);
+		$this->_requireMethod('Posts', $args);
 	}
 
 /**
@@ -391,7 +391,7 @@ class SecurityComponent extends Component {
  * @return bool True if $method is required
  */
 	protected function _methodsRequired(Controller $controller) {
-		foreach (array('Post', 'Get', 'Put', 'Delete') as $method) {
+		foreach (array('Posts', 'Get', 'Put', 'Delete') as $method) {
 			$property = 'require' . $method;
 			if (is_array($this->$property) && !empty($this->$property)) {
 				$require = $this->$property;

@@ -618,7 +618,7 @@ class ViewTaskTest extends CakeTestCase {
 
 		$this->Task->expects($this->once())->method('createFile')
 			->with(
-				TMP . 'ViewTaskComments' . DS . 'list.ctp',
+				TMP . 'ViewTaskComments' . DS . 'table.ctp',
 				$this->stringContains('ViewTaskComment')
 			);
 		$this->Task->execute();

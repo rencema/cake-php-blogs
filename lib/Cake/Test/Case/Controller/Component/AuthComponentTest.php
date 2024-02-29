@@ -439,7 +439,7 @@ class AuthComponentTest extends CakeTestCase {
 		$this->Controller->name = 'CakeError';
 		$this->assertTrue($this->Controller->Auth->startup($this->Controller));
 
-		$this->Controller->name = 'Post';
+		$this->Controller->name = 'Posts';
 		$this->Controller->request['action'] = 'thisdoesnotexist';
 		$this->assertTrue($this->Controller->Auth->startup($this->Controller));
 

@@ -1444,7 +1444,7 @@ class SecurityComponentTest extends CakeTestCase {
 			'_Token' => array(
 				'key' => 'nonce1'
 			),
-			'Post' => array(
+			'Posts' => array(
 				'title' => 'Woot'
 			)
 		);
@@ -1505,7 +1505,7 @@ class SecurityComponentTest extends CakeTestCase {
 
 		$this->Controller->request->params['action'] = 'index';
 		$this->Controller->request->data = array(
-			'Post' => array(
+			'Posts' => array(
 				'title' => 'Woot'
 			)
 		);
@@ -1529,7 +1529,7 @@ class SecurityComponentTest extends CakeTestCase {
 			'_Token' => array(
 				'key' => 'not the right value'
 			),
-			'Post' => array(
+			'Posts' => array(
 				'title' => 'Woot'
 			)
 		);
@@ -1557,7 +1557,7 @@ class SecurityComponentTest extends CakeTestCase {
 			'_Token' => array(
 				'key' => 'not the right value'
 			),
-			'Post' => array(
+			'Posts' => array(
 				'title' => 'Woot'
 			)
 		);
@@ -1581,7 +1581,7 @@ class SecurityComponentTest extends CakeTestCase {
 			'_Token' => array(
 				'key' => 'nonce1'
 			),
-			'Post' => array(
+			'Posts' => array(
 				'title' => 'Woot'
 			)
 		);
@@ -1609,7 +1609,7 @@ class SecurityComponentTest extends CakeTestCase {
 			'_Token' => array(
 				'key' => 'nonce1'
 			),
-			'Post' => array(
+			'Posts' => array(
 				'title' => 'Woot'
 			)
 		);
@@ -1660,7 +1660,7 @@ class SecurityComponentTest extends CakeTestCase {
 			'_Token' => array(
 				'key' => 'nonce1'
 			),
-			'Post' => array(
+			'Posts' => array(
 				'title' => 'Woot'
 			)
 		);

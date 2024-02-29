@@ -160,7 +160,7 @@ class ControllerTestCaseTest extends CakeTestCase {
 		}
 		$Posts = $this->Case->generate('Posts');
 		$this->assertEquals('Posts', $Posts->name);
-		$this->assertEquals('Post', $Posts->modelClass);
+		$this->assertEquals('Posts', $Posts->modelClass);
 		$this->assertNull($Posts->response->send());
 
 		$Posts = $this->Case->generate('Posts', array(
@@ -171,11 +171,11 @@ class ControllerTestCaseTest extends CakeTestCase {
 		$this->assertNull($Posts->render('index'));
 
 		$Posts = $this->Case->generate('Posts', array(
-			'models' => array('Post'),
+			'models' => array('Posts'),
 			'components' => array('RequestHandler')
 		));
 
-		$this->assertInstanceOf('Post', $Posts->Post);
+		$this->assertInstanceOf('Posts', $Posts->Post);
 		$this->assertNull($Posts->Post->save(array()));
 		$this->assertNull($Posts->Post->find('all'));
 		$this->assertEquals('posts', $Posts->Post->useTable);
@@ -183,7 +183,7 @@ class ControllerTestCaseTest extends CakeTestCase {
 
 		$Posts = $this->Case->generate('Posts', array(
 			'models' => array(
-				'Post' => true
+				'Posts' => true
 			)
 		));
 		$this->assertNull($Posts->Post->save(array()));
@@ -191,14 +191,14 @@ class ControllerTestCaseTest extends CakeTestCase {
 
 		$Posts = $this->Case->generate('Posts', array(
 			'models' => array(
-				'Post' => array('save'),
+				'Posts' => array('save'),
 			)
 		));
 		$this->assertNull($Posts->Post->save(array()));
 		$this->assertInternalType('array', $Posts->Post->find('all'));
 
 		$Posts = $this->Case->generate('Posts', array(
-			'models' => array('Post'),
+			'models' => array('Posts'),
 			'components' => array(
 				'RequestHandler' => array('isPut'),
 				'Email' => array('send'),
@@ -453,8 +453,8 @@ class ControllerTestCaseTest extends CakeTestCase {
 		$this->Case->autoMock = true;
 
 		$data = array(
-			'Post' => array(
-				'name' => 'Some Post'
+			'Posts' => array(
+				'name' => 'Some Posts'
 			)
 		);
 		$this->Case->testAction('/tests_apps_posts/post_var', array(

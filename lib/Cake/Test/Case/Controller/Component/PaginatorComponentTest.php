@@ -306,7 +306,7 @@ class PaginatorComponentTest extends CakeTestCase {
 		$this->Paginator = new PaginatorComponent($this->getMock('ComponentCollection'), array());
 		$this->Paginator->Controller = $this->Controller;
 		$this->Controller->Post = $this->getMock('Model');
-		$this->Controller->Post->alias = 'Post';
+		$this->Controller->Post->alias = 'Posts';
 	}
 
 /**
@@ -547,8 +547,8 @@ class PaginatorComponentTest extends CakeTestCase {
 
 		$this->request->params['named'] = array('page' => '1 " onclick="alert(\'xss\');">');
 		$this->Paginator->settings = array('limit' => 1, 'maxLimit' => 10, 'paramType' => 'named');
-		$this->Paginator->paginate('Post');
-		$this->assertSame(1, $this->request->params['paging']['Post']['page'], 'XSS exploit opened');
+		$this->Paginator->paginate('Posts');
+		$this->assertSame(1, $this->request->params['paging']['Posts']['page'], 'XSS exploit opened');
 	}
 
 /**
@@ -840,7 +840,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'maxLimit' => 100,
 			'paramType' => 'named',
 			'queryScope' => null,
-			'Post' => array(
+			'Posts' => array(
 				'page' => 1,
 				'limit' => 10,
 				'maxLimit' => 50,
@@ -850,7 +850,7 @@ class PaginatorComponentTest extends CakeTestCase {
 		$result = $this->Paginator->mergeOptions('Silly');
 		$this->assertEquals($this->Paginator->settings, $result);
 
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array('page' => 1, 'limit' => 10, 'paramType' => 'named', 'maxLimit' => 50, 'queryScope' => null);
 		$this->assertEquals($expected, $result);
 	}
@@ -871,7 +871,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'maxLimit' => 100,
 			'paramType' => 'named',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array('page' => 10, 'limit' => 10, 'maxLimit' => 100, 'paramType' => 'named', 'queryScope' => null);
 		$this->assertEquals($expected, $result);
 	}
@@ -896,7 +896,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'maxLimit' => 100,
 			'findType' => 'myCustomFind',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array(
 			'page' => 10,
 			'limit' => 10,
@@ -914,7 +914,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'findType' => 'myCustomFind',
 			'queryScope' => 'non-existent',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array(
 			'page' => 1,
 			'limit' => 20,
@@ -932,7 +932,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'findType' => 'myCustomFind',
 			'queryScope' => 'scope',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array(
 			'page' => 2,
 			'limit' => 5,
@@ -961,7 +961,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'paramType' => 'named',
 			'findType' => 'myCustomFind'
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array(
 			'page' => 10,
 			'limit' => 10,
@@ -993,7 +993,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'maxLimit' => 100,
 			'paramType' => 'querystring',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array(
 			'page' => 99,
 			'limit' => 75,
@@ -1024,7 +1024,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'maxLimit' => 100,
 			'paramType' => 'named',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array('page' => 10, 'limit' => 10, 'maxLimit' => 100, 'paramType' => 'named', 'queryScope' => null);
 		$this->assertEquals($expected, $result);
 	}
@@ -1050,7 +1050,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'paramType' => 'named',
 		);
 		$this->Paginator->whitelist[] = 'fields';
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array(
 			'page' => 10,
 			'limit' => 10,
@@ -1072,7 +1072,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'limit' => 200,
 			'paramType' => 'named',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array('page' => 1, 'limit' => 200, 'maxLimit' => 100, 'paramType' => 'named', 'queryScope' => null);
 		$this->assertEquals($expected, $result);
 
@@ -1080,7 +1080,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'maxLimit' => 10,
 			'paramType' => 'named',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array('page' => 1, 'limit' => 20, 'maxLimit' => 10, 'paramType' => 'named', 'queryScope' => null);
 		$this->assertEquals($expected, $result);
 
@@ -1091,7 +1091,7 @@ class PaginatorComponentTest extends CakeTestCase {
 			'limit' => 150,
 			'paramType' => 'named',
 		);
-		$result = $this->Paginator->mergeOptions('Post');
+		$result = $this->Paginator->mergeOptions('Posts');
 		$expected = array('page' => 1, 'limit' => 500, 'maxLimit' => 100, 'paramType' => 'named', 'queryScope' => null);
 		$this->assertEquals($expected, $result);
 	}
@@ -1482,8 +1482,8 @@ class PaginatorComponentTest extends CakeTestCase {
 		);
 		$result = $Controller->paginate();
 		$expected = array(
-			1 => 'First Post',
-			2 => 'Second Post',
+			1 => 'First Posts',
+			2 => 'Second Posts',
 		);
 		$this->assertEquals($expected, $result);
 		$result = $Controller->params['paging']['PaginatorCustomPost'];
@@ -1514,8 +1514,8 @@ class PaginatorComponentTest extends CakeTestCase {
 		);
 		$result = $Controller->paginate();
 		$expected = array(
-			1 => 'First Post',
-			2 => 'Second Post',
+			1 => 'First Posts',
+			2 => 'Second Posts',
 		);
 		$this->assertEquals($expected, $result);
 		$result = $Controller->params['paging']['PaginatorCustomPost'];

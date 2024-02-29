@@ -413,7 +413,7 @@ class CakeRequestTest extends CakeTestCase {
 							array('data' => ''),
 							array('data' => ''),
 						),
-						'Post' => array('attachment' => 'jquery-1.2.1.js'),
+						'Posts' => array('attachment' => 'jquery-1.2.1.js'),
 					),
 				'type' => array(
 					'File' => array(
@@ -422,7 +422,7 @@ class CakeRequestTest extends CakeTestCase {
 						array('data' => ''),
 						array('data' => ''),
 					),
-					'Post' => array('attachment' => 'application/x-javascript'),
+					'Posts' => array('attachment' => 'application/x-javascript'),
 				),
 				'tmp_name' => array(
 					'File' => array(
@@ -431,7 +431,7 @@ class CakeRequestTest extends CakeTestCase {
 						array('data' => ''),
 						array('data' => ''),
 					),
-					'Post' => array('attachment' => '/private/var/tmp/phpEwlrIo'),
+					'Posts' => array('attachment' => '/private/var/tmp/phpEwlrIo'),
 				),
 				'error' => array(
 					'File' => array(
@@ -440,7 +440,7 @@ class CakeRequestTest extends CakeTestCase {
 						array('data' => 4),
 						array('data' => 4)
 					),
-					'Post' => array('attachment' => 0)
+					'Posts' => array('attachment' => 0)
 				),
 				'size' => array(
 					'File' => array(
@@ -449,7 +449,7 @@ class CakeRequestTest extends CakeTestCase {
 						array('data' => 0),
 						array('data' => 0),
 					),
-					'Post' => array('attachment' => 80469)
+					'Posts' => array('attachment' => 80469)
 				),
 			)
 		);
@@ -494,7 +494,7 @@ class CakeRequestTest extends CakeTestCase {
 					)
 				),
 			),
-			'Post' => array(
+			'Posts' => array(
 				'attachment' => array(
 					'name' => 'jquery-1.2.1.js',
 					'type' => 'application/x-javascript',
@@ -1081,8 +1081,8 @@ class CakeRequestTest extends CakeTestCase {
 		$request = new CakeRequest('some/path?one=something&two=else');
 		$this->assertTrue(isset($request['url']['one']));
 
-		$request->data = array('Post' => array('title' => 'something'));
-		$this->assertEquals('something', $request['data']['Post']['title']);
+		$request->data = array('Posts' => array('title' => 'something'));
+		$this->assertEquals('something', $request['data']['Posts']['title']);
 	}
 
 /**
@@ -2149,8 +2149,8 @@ class CakeRequestTest extends CakeTestCase {
 
 		$this->assertEquals('new value', $request->data['Model']['new_value']);
 
-		$request->data('Post.title', 'New post')->data('Comment.1.author', 'Mark');
-		$this->assertEquals('New post', $request->data['Post']['title']);
+		$request->data('Posts.title', 'New post')->data('Comment.1.author', 'Mark');
+		$this->assertEquals('New post', $request->data['Posts']['title']);
 		$this->assertEquals('Mark', $request->data['Comment']['1']['author']);
 	}
 
@@ -2162,17 +2162,17 @@ class CakeRequestTest extends CakeTestCase {
 	public function testDataWritingFalsey() {
 		$request = new CakeRequest('posts/index');
 
-		$request->data('Post.null', null);
-		$this->assertNull($request->data['Post']['null']);
+		$request->data('Posts.null', null);
+		$this->assertNull($request->data['Posts']['null']);
 
-		$request->data('Post.false', false);
-		$this->assertFalse($request->data['Post']['false']);
+		$request->data('Posts.false', false);
+		$this->assertFalse($request->data['Posts']['false']);
 
-		$request->data('Post.zero', 0);
-		$this->assertSame(0, $request->data['Post']['zero']);
+		$request->data('Posts.zero', 0);
+		$this->assertSame(0, $request->data['Posts']['zero']);
 
-		$request->data('Post.empty', '');
-		$this->assertSame('', $request->data['Post']['empty']);
+		$request->data('Posts.empty', '');
+		$this->assertSame('', $request->data['Posts']['empty']);
 	}
 
 /**
@@ -2252,17 +2252,17 @@ class CakeRequestTest extends CakeTestCase {
 
 		$this->assertInstanceOf('CakeRequest', $request->param('some', 'thing'), 'Method has not returned $this');
 
-		$request->param('Post.null', null);
-		$this->assertNull($request->params['Post']['null']);
+		$request->param('Posts.null', null);
+		$this->assertNull($request->params['Posts']['null']);
 
-		$request->param('Post.false', false);
-		$this->assertFalse($request->params['Post']['false']);
+		$request->param('Posts.false', false);
+		$this->assertFalse($request->params['Posts']['false']);
 
-		$request->param('Post.zero', 0);
-		$this->assertSame(0, $request->params['Post']['zero']);
+		$request->param('Posts.zero', 0);
+		$this->assertSame(0, $request->params['Posts']['zero']);
 
-		$request->param('Post.empty', '');
-		$this->assertSame('', $request->params['Post']['empty']);
+		$request->param('Posts.empty', '');
+		$this->assertSame('', $request->params['Posts']['empty']);
 
 		$this->assertSame('index', $request->action);
 		$request->param('action', 'edit');

@@ -1200,7 +1200,7 @@ class ControllerTest extends CakeTestCase {
 				array('Posts' => array('id IS NULL union all select posts.* from posts where id; --' => 1))
 			),
 			array(
-				array('Post.id IS NULL; --' => array('id' => 1))
+				array('Posts.id IS NULL; --' => array('id' => 1))
 			),
 		);
 	}
@@ -1327,7 +1327,7 @@ class ControllerTest extends CakeTestCase {
 	public function testPropertyBackwardsCompatibility() {
 		$request = new CakeRequest('posts/index', false);
 		$request->addParams(array('controller' => 'posts', 'action' => 'index'));
-		$request->data = array('Post' => array('id' => 1));
+		$request->data = array('Posts' => array('id' => 1));
 		$request->here = '/posts/index';
 		$request->webroot = '/';
 

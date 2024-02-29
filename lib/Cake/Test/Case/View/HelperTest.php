@@ -459,35 +459,35 @@ class HelperTest extends CakeTestCase {
 		$this->assertEquals('This is me', $result);
 
 		$this->Helper->request->data = array(
-			'Post' => array('name' => 'First Post')
+			'Posts' => array('name' => 'First Posts')
 		);
-		$this->Helper->setEntity('Post.name');
-		$result = $this->Helper->value('Post.name');
-		$this->assertEquals('First Post', $result);
+		$this->Helper->setEntity('Posts.name');
+		$result = $this->Helper->value('Posts.name');
+		$this->assertEquals('First Posts', $result);
 
 		$this->Helper->request->data = array(
-			'Post' => array(2 => array('name' => 'First Post'))
+			'Posts' => array(2 => array('name' => 'First Posts'))
 		);
-		$this->Helper->setEntity('Post.2.name');
-		$result = $this->Helper->value('Post.2.name');
-		$this->assertEquals('First Post', $result);
+		$this->Helper->setEntity('Posts.2.name');
+		$result = $this->Helper->value('Posts.2.name');
+		$this->assertEquals('First Posts', $result);
 
 		$this->Helper->request->data = array(
-			'Post' => array(
+			'Posts' => array(
 				2 => array('created' => array('year' => '2008'))
 			)
 		);
-		$this->Helper->setEntity('Post.2.created');
-		$result = $this->Helper->value('Post.2.created');
+		$this->Helper->setEntity('Posts.2.created');
+		$result = $this->Helper->value('Posts.2.created');
 		$this->assertEquals(array('year' => '2008'), $result);
 
 		$this->Helper->request->data = array(
-			'Post' => array(
+			'Posts' => array(
 				2 => array('created' => array('year' => '2008'))
 			)
 		);
-		$this->Helper->setEntity('Post.2.created.year');
-		$result = $this->Helper->value('Post.2.created.year');
+		$this->Helper->setEntity('Posts.2.created.year');
+		$result = $this->Helper->value('Posts.2.created.year');
 		$this->assertEquals('2008', $result);
 	}
 

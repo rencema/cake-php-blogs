@@ -3,11 +3,23 @@
 class PostsController extends AppController
 {
   public $helpers = array('Html', 'Form', 'Flash');
-  public $components = array('Flash',);
+  public $components = array('Flash');
 
   public function index()
   {
-    $this->set('posts', $this->Post->find('all'));
+    $this->set_posts();
+  }
+
+  private function set_posts() {
+    $posts = $this->paginate();
+    $this->set('posts', $posts);
+  }
+
+  public function table_ajax()
+  {
+    $this->layout = null;
+    $this->set_posts();
+    $this->render('/Elements/Posts/table');
   }
 
   public function view($id = null)
@@ -35,7 +47,8 @@ class PostsController extends AppController
     }
   }
 
-  public function edit($id = null) {
+  public function edit($id = null)
+  {
     if (!$id) {
       throw new NotFoundException(__('Invalid post'));
     }
@@ -49,7 +62,7 @@ class PostsController extends AppController
       $this->Post->id = $id;
       if ($this->Post->save($this->request->data)) {
         $this->Flash->success(__('Your post has been updated.'));
-        return $this->redirect(array('action' => 'index', 'controller' => 'posts'));
+        return $this->redirect(array('action' => 'index'));
       }
       $this->Flash->error(__('Unable to update your post.'));
     }
@@ -60,7 +73,8 @@ class PostsController extends AppController
   }
 
 
-  public function delete($id) {
+  public function delete($id)
+  {
     if ($this->request->is('get')) {
       throw new MethodNotAllowedException();
     }
